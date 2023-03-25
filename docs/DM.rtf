@@ -1,0 +1,132 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2706
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh16920\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 @startuml\
+package Warehouse \{\
+	object warehouse <<root>>\
+	object idW <<Value>>\
+	object designationW <<Value>>\
+	object addressW <<Value>>\
+	object coordinatesW <<Value>>\
+\}\
+\
+warehouse "1" --> "1" idW\
+warehouse "1" --> "1" designationW\
+warehouse "1" --> "1" addressW\
+warehouse "1" --> "1" coordinatesW\
+\
+package Store \{\
+	object store <<root>>\
+	object idS <<Value>>\
+\}\
+\
+store "1" --> "1" idS\
+\
+package Order \{\
+	object order <<root>>\
+	object idO <<Value>>\
+\}\
+\
+order "1" --> "1" idO\
+\
+package Delivery \{\
+	object delivery <<root>>\
+        object idD <<Value>>\
+	object deliveryDateD <<Value>>\
+	object deliveryMassD <<Value>>\
+	object deliveryWarehouseD <<Value>>\
+	object timeLoadDeliveryD <<Value>>\
+	object timeUnloadDeliveryD <<Value>>\
+\}\
+\
+delivery "1" --> "1" idD\
+delivery "1" --> "1" deliveryDateD\
+delivery "1" --> "1" deliveryMassD\
+delivery "1" --> "1" deliveryWarehouseD\
+delivery "1" --> "1" timeLoadDeliveryD\
+delivery "1" --> "1" timeUnloadDeliveryD\
+\
+package Truck \{\
+	object truck <<root>>\
+	object idT <<Value>>\
+	object tareWeightT <<Value>>\
+	object batteryCapT <<Value>>\
+	object maxBatteryCapT <<Value>>\
+	object eletricRangeT <<Value>>\
+	object chargeTimeT <<Value>>\
+	object registrationT <<Value>>\
+\}\
+\
+truck "1" --> "1" idT\
+truck "1" --> "1" tareWeightT\
+truck "1" --> "1" batteryCapT\
+truck "1" --> "1" maxBatteryCapT\
+truck "1" --> "1" eletricRangeT\
+truck "1" --> "1" chargeTimeT\
+truck "1" --> "1" registrationT\
+\
+package Route \{\
+	object route <<root>>\
+	object idR <<Value>>\
+	object originR <<Value>>\
+	object destinationR <<Value>>\
+	object distanceR <<Value>>\
+	object timeDistanceFullTruckR <<Value>>\
+	object energySpentR <<Value>>\
+	object extraTimeBatteryR <<Value>>\
+\}\
+\
+route "1" --> "1" idR: has\
+route "1" --> "1" originR: has\
+route "1" --> "1" destinationR: has\
+route "1" --> "1" distanceR: has\
+route "1" --> "1" timeDistanceFullTruckR: has\
+route "1" --> "1" energySpentR: has\
+route "1" --> "1" extraTimeBatteryR: has\
+\
+package SalesForecast \{\
+	object salesForecast <<root>>\
+	object idSF <<Value>>\
+\}\
+\
+salesForecast "1" --> "1" idSF\
+\
+package DeliveryPlan \{\
+	object deliveryPlan <<root>>\
+        object idDP <<Value>>\
+\}\
+\
+deliveryPlan "1" --> "1" idDP\
+\
+package Packaging \{\
+	object packaging <<root>>\
+	object idP <<Value>>\
+\}\
+\
+packaging "1" --> "1" idP\
+truck "1" --> "1..*" packaging: has\
+delivery "1" --> "1" packaging: has\
+\
+package Trip \{\
+	object trip <<root>>\
+	object idTp <<Value>>\
+\}\
+\
+trip "1" --> "1"idTp\
+trip "1" --> "1..*" route: has\
+\
+warehouse "1" <-- "1..*" route: origin\
+warehouse "1" <-- "1..*" route: destination\
+warehouse "1" --> "1..*" delivery: does\
+store "1" --> "1..*" delivery: has\
+store \'941\'94 --> "1" warehouse: has\
+delivery "1" --> "1..*" order: has\
+deliveryPlan "1" --> "1..*" delivery: has\
+salesForecast "1" <--> "1..*" order: has\
+truck "1" --> "1" deliveryPlan: does\
+truck "1" --> "1" trip: does\
+@enduml}

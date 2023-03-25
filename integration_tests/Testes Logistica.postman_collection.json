@@ -1,0 +1,1131 @@
+{
+	"info": {
+		"_postman_id": "b3ac840e-f443-4fc2-bf6c-b9245438bfa7",
+		"name": "Testes Logistica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24150869"
+	},
+	"item": [
+		{
+			"name": "Route",
+			"item": [
+				{
+					"name": "test get route getAllRoutes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/routes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get route getRouteById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/routes/:routeId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routes",
+								":routeId"
+							],
+							"variable": [
+								{
+									"key": "routeId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test post route",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {pm.expect(pm.response.code).to.be.oneOf([201,202]);}); ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"routeId\": \"33\",\n        \"origin\": \"OPO\",\n        \"destination\": \"VIE\",\n        \"distance\": \"60\",\n        \"timeDistance\": \"60:00\",\n        \"energySpent\": \"90\",\n        \"extraTimeBattery\": \"10:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/routes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test delete route deleteRouteById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/routes/:routeId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routes",
+								":routeId"
+							],
+							"variable": [
+								{
+									"key": "routeId",
+									"value": "77"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test data type route",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"const jsonData= pm.response.json();",
+									"pm.test(\"Test data type of the response\", () => {pm.expect(jsonData).to.be.an(\"object\");pm.expect(jsonData.routeId).to.be.a(\"string\");pm.expect(jsonData.origin).to.be.a(\"string\");pm.expect(jsonData.destination).to.be.a(\"string\");pm.expect(jsonData.distance).to.be.a(\"string\");pm.expect(jsonData.timeDistance).to.be.a(\"string\");pm.expect(jsonData.energySpent).to.be.a(\"string\");pm.expect(jsonData.extraTimeBattery).to.be.a(\"string\");});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"routeId\": \"7\",\n        \"origin\": \"OPO\",\n        \"destination\": \"BRG\",\n        \"distance\": \"60\",\n        \"timeDistance\": \"60:00\",\n        \"energySpent\": \"90\",\n        \"extraTimeBattery\": \"10:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/routes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test put route",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"routeId\": \"5\",\n        \"origin\": \"OPO\",\n        \"destination\": \"MAD\",\n        \"distance\": \"500\",\n        \"timeDistance\": \"90:00\",\n        \"energySpent\": \"100\",\n        \"extraTimeBattery\": \"10:00\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/routes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Truck",
+			"item": [
+				{
+					"name": "test get truck getAllTrucks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/trucks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trucks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get truck getTruckById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/trucks/:truckId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trucks",
+								":truckId"
+							],
+							"variable": [
+								{
+									"key": "truckId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test post truck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {pm.expect(pm.response.code).to.be.oneOf([201,202]);}); ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"truckId\": \"33\",\n        \"registration\": \"55-PP-88\",\n        \"batteryCap\": \"3130\",\n        \"maxBatteryCap\": \"3233\",\n        \"electricRange\": \"370\",\n        \"chargeTime\": \"22:22\",\n        \"tareWeight\": \"60.000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/trucks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trucks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test put truck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"truckId\": \"7\",\n        \"registration\": \"99-TT-77\",\n        \"batteryCap\": \"9150\",\n        \"maxBatteryCap\": \"3223\",\n        \"electricRange\": \"370\",\n        \"chargeTime\": \"22:22\",\n        \"tareWeight\": \"80.000\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/trucks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trucks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test delete truck deleteTruckById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/trucks/:truckId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trucks",
+								":truckId"
+							],
+							"variable": [
+								{
+									"key": "truckId",
+									"value": "65"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DeliveryPlan",
+			"item": [
+				{
+					"name": "test get deliveryPlan getAllDeliveryPlans",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/deliveryplan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"deliveryplan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get deliveryPlan getDeliveryPlanById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/deliveryplan/:deliveryplan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"deliveryplan",
+								":deliveryplan"
+							],
+							"variable": [
+								{
+									"key": "deliveryplan",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test post deliveryPlan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {pm.expect(pm.response.code).to.be.oneOf([201,202]);}); ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"deliveryPlanId\": \"33\",\n        \"deliveryPlanDeliveries\": [\"1\",\"3\"]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/deliveryplan/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"deliveryplan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test put deliveryPlan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"deliveryPlanId\": \"kp\",\n        \"deliveryPlanDeliveries\": [\n            \"1\",\n            \"2\",\n            \"3\"\n        ]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/deliveryplan/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"deliveryplan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test delete deliveryPlan deleteDeliveryPlanById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/deliveryplan/:deliveryplan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"deliveryplan",
+								":deliveryplan"
+							],
+							"variable": [
+								{
+									"key": "deliveryplan",
+									"value": "65"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Packaging",
+			"item": [
+				{
+					"name": "test get packaging getAllPackaging",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/packaging",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"packaging"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get packaging getPackagingById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/packaging/:packagingid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"packaging",
+								":packagingid"
+							],
+							"variable": [
+								{
+									"key": "packagingid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test post packaging",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {pm.expect(pm.response.code).to.be.oneOf([201,202]);}); ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"packagingId\": \"33\",\n        \"packagingX\": \"3\",\n        \"packagingY\": \"2\",\n        \"packagingZ\": \"4\",\n        \"packagingTruck\": \"1\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/packaging/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"packaging",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test post fail packaging",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData= pm.request.body;",
+									"/*",
+									"if ((jsonData.packagingX)<10) {",
+									"   pm.test(\"pass\")",
+									"} else /*if((jsonData.packagingX)<=10) {",
+									" */",
+									"// pm.test(\"Request fail-PackagingX must be between 1 and 10\", function () {",
+									"  //  pm.response.to.have.status(402);})",
+									" //pm.test(\"fail\")",
+									"//}",
+									"",
+									"//com verificação dos if nao corre ou entao passa sempre se tiver o else final",
+									"/*",
+									"if ((jsonData.packagingX)>10) {",
+									"   pm.test(\"Request fail-PackagingX must be between 0 and 10\", function () {",
+									"    pm.response.to.have.status(402);})",
+									"} else if ((jsonData.packagingY)>20) {",
+									"   pm.test(\"Request fail-PackagingX must be between 0 and 20\", function () {",
+									"    pm.response.to.have.status(402);})",
+									"} else if  ((jsonData.packagingZ)>8) {",
+									"   pm.test(\"Request fail-PackagingX must be between 0 and 8\", function () {",
+									"    pm.response.to.have.status(402);})",
+									"} ",
+									"else {",
+									"    pm.test(\"Pass\")",
+									"}*/",
+									"",
+									"//assim se o packagingX for superior falha bem",
+									"pm.test(\"Request fail-PackagingX must be between 0 and 10\", function () {",
+									"    pm.response.to.have.status(402);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"packagingId\": \"60\",\n        \"packagingX\": \"11\",\n        \"packagingY\": \"8\",\n        \"packagingZ\": \"2\",\n        \"packagingTruck\": \"1\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/packaging/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"packaging",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test put packaging",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"packagingId\": \"7\",\n        \"packagingX\": \"7\",\n        \"packagingY\": \"3\",\n        \"packagingZ\": \"4\",\n        \"packagingTruck\": \"4\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/packaging/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"packaging",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test delete packaging deletePackagingById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/packaging/:packagingid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"packaging",
+								":packagingid"
+							],
+							"variable": [
+								{
+									"key": "packagingid",
+									"value": "65"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trip",
+			"item": [
+				{
+					"name": "test get trip getAllTrips",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/trip",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trip"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get trip getTripById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/trip/:tripid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trip",
+								":tripid"
+							],
+							"variable": [
+								{
+									"key": "tripid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test post trip",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {pm.expect(pm.response.code).to.be.oneOf([201,202]);}); ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"tripId\": \"33\",\n        \"tripRoutes\": [\"3\"]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/trip/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trip",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test put trip",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"tripId\": \"7\",\n        \"tripRoutes\": [\"3\"]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/trip/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trip",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test delete trip deleteTripById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/trip/:tripid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"trip",
+								":tripid"
+							],
+							"variable": [
+								{
+									"key": "tripid",
+									"value": "65"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
